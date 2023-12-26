@@ -1,5 +1,6 @@
-// region: --- Day 2
-pub fn check1_day2(input: &str) -> u32 {
+use crate::utils;
+
+fn check1(input: &str) -> u32 {
     let mut result = 0;
     const MAX_BLUE: u32 = 14;
     const MAX_RED: u32 = 12;
@@ -31,7 +32,7 @@ pub fn check1_day2(input: &str) -> u32 {
     result
 }
 
-pub fn check2_day2(input: &str) -> u32 {
+fn check2(input: &str) -> u32 {
     let mut result = 0;
 
     for line in input.split('\n') {
@@ -58,13 +59,15 @@ pub fn check2_day2(input: &str) -> u32 {
     result
 }
 
-// endregion: --- Day 2
-
+pub fn run() {
+    let lines = utils::my_read_file("examples/text_day2.txt").unwrap();
+    println!("Day2 - Part1: {}", check1(&lines));
+    println!("Day2 - Part2: {}", check2(&lines));
+}
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    // region: --- Day 2
     #[test]
     fn day2_test1() {
         let test = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
@@ -72,7 +75,7 @@ Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
 Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
 Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
-        let result = check1_day2(test);
+        let result = check1(test);
         assert_eq!(result, 8);
     }
     
@@ -83,9 +86,7 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
         Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
         Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
         Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
-        let result = check2_day2(test);
+        let result = check2(test);
         assert_eq!(result, 2286);
     }
-
-    // endregion: --- Day 2
 }

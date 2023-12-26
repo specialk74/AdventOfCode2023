@@ -1,6 +1,6 @@
+use crate::utils;
 
-// region: --- Day 1
-pub fn check1_day1(lines: &str) -> u32
+fn check1(lines: &str) -> u32
 {
     let results = lines.split('\n');
     let mut sum = 0;
@@ -19,7 +19,7 @@ pub fn check1_day1(lines: &str) -> u32
 }
 
 
-pub fn check2_day1(lines: &str) -> u32
+fn check2(lines: &str) -> u32
 {
     let vec_num = vec!["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
     let results = lines.split('\n');
@@ -92,13 +92,17 @@ pub fn check2_day1(lines: &str) -> u32
     sum
 }
 
-// endregion: Day 1
+pub fn run() {
+    let lines = utils::my_read_file("examples/text_day1.txt").unwrap();
+    println!("Day1 - Part1: {}", check1(&lines));
+     println!("Day1 - Part2: {}", check2(&lines));
+}
+
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    // region: --- Day 1
     #[test]
     fn day1_test1() {
         let test = "1abc2
@@ -106,7 +110,7 @@ mod tests {
         a1b2c3d4e5f
         treb7uchet";
 
-        let result = check1_day1(test);
+        let result = check1(test);
         assert_eq!(result, 142);
     }
 
@@ -120,9 +124,7 @@ mod tests {
         zoneight234
         7pqrstsixteen";
 
-        let result = check2_day1(test);
+        let result = check2(test);
         assert_eq!(result, 281);
     }
-
-    // endregion: --- Day 1
 }

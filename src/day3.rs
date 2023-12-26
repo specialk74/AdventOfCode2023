@@ -1,4 +1,5 @@
-// region: --- Day 3
+use crate::utils;
+
 #[derive(Debug, Clone)]
 struct NumbersDay3 {
     number: u32,
@@ -67,7 +68,7 @@ fn symbol_near_number(symbol: &SymbolsDay3, number: &NumbersDay3) -> bool {
     false
 }
 
-pub fn check1_day3(input: &str) -> u32 {
+fn check1(input: &str) -> u32 {
     let mut result = 0;
 
     let mut row = 0;
@@ -131,7 +132,7 @@ fn get_ratio_day3(symbol: &SymbolsDay3, numbers: &Vec<NumbersDay3>) -> u32 {
     0
 }
 
-pub fn check2_day3(input: &str) -> u32 {
+fn check2(input: &str) -> u32 {
     let mut result = 0;
 
     let mut row = 0;
@@ -174,14 +175,15 @@ pub fn check2_day3(input: &str) -> u32 {
     result
 }
 
-// endregion: --- Day 3
-
+pub fn run() {
+    let lines = utils::my_read_file("examples/text_day3.txt").unwrap();
+    println!("Day3 - Part1: {}", check1(&lines));
+    println!("Day3 - Part2: {}", check2(&lines));
+}
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    // region: --- Day 3
 
     #[test]
     fn day3_test1() {
@@ -195,7 +197,7 @@ mod tests {
 ......755.
 ...$.*....
 .664.598..";
-        let result = check1_day3(test);
+        let result = check1(test);
         assert_eq!(result, 4361);
     }
 
@@ -211,9 +213,7 @@ mod tests {
 ......755.
 ...$.*....
 .664.598..";
-        let result = check2_day3(test);
+        let result = check2(test);
         assert_eq!(result, 467835);
     }
-
-    // endregion: --- Day 3
 }
