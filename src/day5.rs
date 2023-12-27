@@ -1,7 +1,4 @@
-use std::{thread, sync::Arc};
-
 use crate::utils;
-//use std::{thread, sync::Arc};
 
 #[derive(Clone)]
 struct Map {
