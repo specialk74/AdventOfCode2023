@@ -33,6 +33,7 @@ fn check1(lines: &str) -> u32 {
 // No: 10254412
 // No: 12621882
 // No: 18958970
+// Yes: 12648035
 
 fn check2(lines: &str) -> u32 {
     let mut result = 0;
@@ -40,7 +41,6 @@ fn check2(lines: &str) -> u32 {
     let mut card_number = 0;
     for line in lines.split('\n') {
 
-        //dbg!("line: {}", line);
         let mut values = line.split([':', '|']);
         let mut count = 0;
         let numbers_sx: Vec<u32> = values
@@ -55,52 +55,41 @@ fn check2(lines: &str) -> u32 {
                 .split(' ')
                 .filter_map(|x| x.parse::<u32>().ok())
                 .collect();
-            //dbg!("numbers_dx: {}", numbers_dx.clone());
-            //dbg!("numbers_sx: {}", numbers_sx.clone());
 
+        // Check how many numbers present in the right list are present in the left list
         for num in numbers_sx {
             if numbers_dx.contains(&num) {
                 count += 1;
             }
         }
 
-        let mut created = false;
-
-        println!("\n\nSTART | card_number: {} | count: {}", card_number + 1, count);
-        println!("1) scratchcards: {}", scratchcards.clone().into_iter().map(|i| i.to_string() + " ").collect::<String>());
+        // If the Card Number is not present in the scratchcards list, then it is inserted with value 0
         if card_number >= scratchcards.len() {
-            scratchcards.push(1);
-            created = true;
+            scratchcards.push(0);
         }
 
-        println!("2) scratchcards: {}", scratchcards.clone().into_iter().map(|i| i.to_string() + " ").collect::<String>());
+        // If it is present at least one number, start to create the childs
         if count > 0 {
-            
+            // Take the init value of the child
+            let init_value = scratchcards[card_number] + 1;
             for index in card_number+1..=card_number + count {
-                //println!("index: {} > scratchcards.len(): {}", index, scratchcards.len());
+                // If the child is not present, then it is created
                 if index >= scratchcards.len() {
-                    println!("Pushed {} into scratchcards[{}]", scratchcards[card_number], index);
-                    scratchcards.push(scratchcards[card_number]);
+                    scratchcards.push(init_value);
                 }
+                // Otherwise it is updtaed
                 else {
-                    println!("Changed from {} to {} = {} + {} + 1 into scratchcards[{}]", scratchcards[index], scratchcards[index] + scratchcards[card_number] + 1, scratchcards[index], scratchcards[card_number], index);
-                    scratchcards[index] += scratchcards[card_number]+1;
+                    scratchcards[index] += init_value;
                 }
             }
         }
-        println!("3) scratchcards: {}", scratchcards.clone().into_iter().map(|i| i.to_string() + " ").collect::<String>());
 
-        println!("created: {} - card_number: {} - scratchcards.len(): {}", created, card_number, scratchcards.len());
-        if !created {
-            scratchcards[card_number] += 1;
-        }
-        //dbg!("scratchcards: {}", scratchcards.clone());
-        println!("4) scratchcards: {}", scratchcards.clone().into_iter().map(|i| i.to_string() + " ").collect::<String>());
+        // At the end, the value is incremented of one value
+        scratchcards[card_number] += 1;
 
+        // Increment next card number value
         card_number += 1;
     }
-
-    //println!("5) scratchcards: {}", scratchcards.clone().into_iter().map(|i| i.to_string() + " ").collect::<String>());
 
     for num in scratchcards {
         result += num;
