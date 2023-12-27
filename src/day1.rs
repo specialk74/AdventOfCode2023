@@ -104,7 +104,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn day1_test1() {
+    fn test1() {
         let test = "1abc2
         pqr3stu8vwx
         a1b2c3d4e5f
@@ -115,7 +115,7 @@ mod tests {
     }
 
     #[test]
-    fn day1_test2() {
+    fn test2() {
         let test = "two1nine
         eightwothree
         abcone2threexyz

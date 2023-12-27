@@ -186,7 +186,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn day3_test1() {
+    fn test1() {
         let test = "467..114..
 ...*......
 ..35..633.
@@ -202,7 +202,7 @@ mod tests {
     }
 
     #[test]
-    fn day3_test2() {
+    fn test2() {
         let test = "467..114..
 ...*......
 ..35..633.
