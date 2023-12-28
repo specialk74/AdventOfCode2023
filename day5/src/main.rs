@@ -1,4 +1,4 @@
-use crate::utils;
+use utils::{my_read_file, from_slice_to_vec};
 
 #[derive(Clone)]
 struct Map {
@@ -197,7 +197,7 @@ fn check1(lines: &str) -> u64 {
                                     .split(':')
                                     .nth(1)
                                     .unwrap();
-            result.seeds = utils::from_slice_to_vec(values);
+            result.seeds = from_slice_to_vec(values);
         }
         else if line.contains("seed-to-soil map:")
         {
@@ -267,7 +267,7 @@ fn check2(lines: &str) -> u64 {
                                     .split(':')
                                     .nth(1)
                                     .unwrap();
-            let seeds_orig = utils::from_slice_to_vec(values);
+            let seeds_orig = from_slice_to_vec(values);
             let mut seeds: Vec<Seeds> = Vec::new();
 
             let mut index = 0;
@@ -335,8 +335,8 @@ fn check2(lines: &str) -> u64 {
     result.get_min_location_range()
 }
 
-pub fn run() {
-    let lines = utils::my_read_file("examples/text_day5.txt").unwrap();
+fn main() {
+    let lines = my_read_file("examples/text_day5.txt").unwrap();
     println!("Day5 - Part1: {}", check1(&lines));
     println!("Day5 - Part2: {}", check2(&lines));
 }

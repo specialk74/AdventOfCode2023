@@ -1,4 +1,4 @@
-use crate::utils;
+use utils::my_read_file;
 
 #[derive(Debug, Clone)]
 struct NumbersDay3 {
@@ -175,8 +175,8 @@ fn check2(input: &str) -> u32 {
     result
 }
 
-pub fn run() {
-    let lines = utils::my_read_file("examples/text_day3.txt").unwrap();
+fn main() {
+    let lines = my_read_file("examples/text_day3.txt").unwrap();
     println!("Day3 - Part1: {}", check1(&lines));
     println!("Day3 - Part2: {}", check2(&lines));
 }

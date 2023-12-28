@@ -1,4 +1,4 @@
-use crate::utils;
+use utils::my_read_file;
 
 fn check1(input: &str) -> u32 {
     let mut result = 0;
@@ -59,8 +59,8 @@ fn check2(input: &str) -> u32 {
     result
 }
 
-pub fn run() {
-    let lines = utils::my_read_file("examples/text_day2.txt").unwrap();
+fn main() {
+    let lines = my_read_file("examples/text_day2.txt").unwrap();
     println!("Day2 - Part1: {}", check1(&lines));
     println!("Day2 - Part2: {}", check2(&lines));
 }
