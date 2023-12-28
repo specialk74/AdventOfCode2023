@@ -1,5 +1,3 @@
-use utils::my_read_file;
-
 #[derive(Debug, Clone)]
 struct NumbersDay3 {
     number: u32,
@@ -176,9 +174,9 @@ fn check2(input: &str) -> u32 {
 }
 
 fn main() {
-    let lines = my_read_file("examples/text_day3.txt").unwrap();
-    println!("Day3 - Part1: {}", check1(&lines));
-    println!("Day3 - Part2: {}", check2(&lines));
+    let input = include_str!("./input.txt");
+    println!("Day3 - Part1: {}", check1(&input));
+    println!("Day3 - Part2: {}", check2(&input));
 }
 
 #[cfg(test)]

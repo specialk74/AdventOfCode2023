@@ -1,4 +1,4 @@
-use utils::{my_read_file, from_slice_to_vec};
+use utils::from_slice_to_vec;
 
 #[derive(Clone)]
 struct Map {
@@ -336,9 +336,10 @@ fn check2(lines: &str) -> u64 {
 }
 
 fn main() {
-    let lines = my_read_file("examples/text_day5.txt").unwrap();
-    println!("Day5 - Part1: {}", check1(&lines));
-    println!("Day5 - Part2: {}", check2(&lines));
+    let input = include_str!("./input.txt");
+
+    println!("Day5 - Part1: {}", check1(&input));
+    println!("Day5 - Part2: {}", check2(&input));
 }
 
 #[cfg(test)]
@@ -363,7 +364,7 @@ mod tests {
     }
     #[test]
     fn test1() {
-        let test = "seeds: 79 14 55 13
+        let result = check1("seeds: 79 14 55 13
 
         seed-to-soil map:
         50 98 2
@@ -395,15 +396,13 @@ mod tests {
         
         humidity-to-location map:
         60 56 37
-        56 93 4";
-
-        let result = check1(test);
+        56 93 4");
         assert_eq!(result, 35);
     }
 
     #[test]
     fn test2() {
-        let test = "seeds: 79 14 55 13
+        let result = check2("seeds: 79 14 55 13
 
         seed-to-soil map:
         50 98 2
@@ -435,9 +434,7 @@ mod tests {
         
         humidity-to-location map:
         60 56 37
-        56 93 4";
-
-        let result = check2(test);
+        56 93 4");
         assert_eq!(result, 46);
     }
 }

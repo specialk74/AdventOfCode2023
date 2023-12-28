@@ -1,6 +1,4 @@
-use utils::my_read_file;
-
-fn check1(lines: &str) -> u32
+fn part1(lines: &str) -> u32
 {
     let results = lines.split('\n');
     let mut sum = 0;
@@ -19,7 +17,7 @@ fn check1(lines: &str) -> u32
 }
 
 
-fn check2(lines: &str) -> u32
+fn part2(lines: &str) -> u32
 {
     let vec_num = vec!["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
     let results = lines.split('\n');
@@ -93,9 +91,9 @@ fn check2(lines: &str) -> u32
 }
 
 fn main() {
-    let lines = my_read_file("examples/text_day1.txt").unwrap();
-    println!("Day1 - Part1: {}", check1(&lines));
-    println!("Day1 - Part2: {}", check2(&lines));
+    let input = include_str!("./input.txt");
+    println!("Day1 - Part1: {}", part1(&input));
+    println!("Day1 - Part2: {}", part2(&input));
 }
 
 
@@ -105,26 +103,22 @@ mod tests {
 
     #[test]
     fn test1() {
-        let test = "1abc2
+        let result = part1("1abc2
         pqr3stu8vwx
         a1b2c3d4e5f
-        treb7uchet";
-
-        let result = check1(test);
+        treb7uchet");
         assert_eq!(result, 142);
     }
 
     #[test]
     fn test2() {
-        let test = "two1nine
+        let result = part2("two1nine
         eightwothree
         abcone2threexyz
         xtwone3four
         4nineeightseven2
         zoneight234
-        7pqrstsixteen";
-
-        let result = check2(test);
+        7pqrstsixteen");
         assert_eq!(result, 281);
     }
 }

@@ -1,6 +1,4 @@
-use utils::my_read_file;
-
-fn check1(input: &str) -> u32 {
+fn part1(input: &str) -> u32 {
     let mut result = 0;
     const MAX_BLUE: u32 = 14;
     const MAX_RED: u32 = 12;
@@ -32,7 +30,7 @@ fn check1(input: &str) -> u32 {
     result
 }
 
-fn check2(input: &str) -> u32 {
+fn part2(input: &str) -> u32 {
     let mut result = 0;
 
     for line in input.split('\n') {
@@ -60,9 +58,9 @@ fn check2(input: &str) -> u32 {
 }
 
 fn main() {
-    let lines = my_read_file("examples/text_day2.txt").unwrap();
-    println!("Day2 - Part1: {}", check1(&lines));
-    println!("Day2 - Part2: {}", check2(&lines));
+    let input = include_str!("./input.txt");
+    println!("Day2 - Part1: {}", part1(&input));
+    println!("Day2 - Part2: {}", part2(&input));
 }
 #[cfg(test)]
 mod tests {
@@ -70,23 +68,21 @@ mod tests {
 
     #[test]
     fn test1() {
-        let test = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
-Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
-Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
-Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
-Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
-        let result = check1(test);
+        let result = part1("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+        Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+        Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+        Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+        Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green");
         assert_eq!(result, 8);
     }
     
     #[test]
     fn test2() {
-        let test = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+        let result = part2("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
         Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
         Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
         Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
-        Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
-        let result = check2(test);
+        Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green");
         assert_eq!(result, 2286);
     }
 }
