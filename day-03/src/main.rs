@@ -66,7 +66,7 @@ fn symbol_near_number(symbol: &SymbolsDay3, number: &NumbersDay3) -> bool {
     false
 }
 
-fn check1(input: &str) -> u32 {
+fn part1(input: &str) -> u32 {
     let mut result = 0;
 
     let mut row = 0;
@@ -130,7 +130,7 @@ fn get_ratio_day3(symbol: &SymbolsDay3, numbers: &Vec<NumbersDay3>) -> u32 {
     0
 }
 
-fn check2(input: &str) -> u32 {
+fn part2(input: &str) -> u32 {
     let mut result = 0;
 
     let mut row = 0;
@@ -175,8 +175,8 @@ fn check2(input: &str) -> u32 {
 
 fn main() {
     let input = include_str!("./input.txt");
-    println!("Day3 - Part1: {}", check1(&input));
-    println!("Day3 - Part2: {}", check2(&input));
+    println!("Day3 - Part1: {}", part1(&input));
+    println!("Day3 - Part2: {}", part2(&input));
 }
 
 #[cfg(test)]
@@ -185,7 +185,7 @@ mod tests {
 
     #[test]
     fn test1() {
-        let test = "467..114..
+        assert_eq!(4361, part1("467..114..
 ...*......
 ..35..633.
 ......#...
@@ -194,14 +194,12 @@ mod tests {
 ..592.....
 ......755.
 ...$.*....
-.664.598..";
-        let result = check1(test);
-        assert_eq!(result, 4361);
+.664.598.."));
     }
 
     #[test]
     fn test2() {
-        let test = "467..114..
+        assert_eq!(467835, part2("467..114..
 ...*......
 ..35..633.
 ......#...
@@ -210,8 +208,6 @@ mod tests {
 ..592.....
 ......755.
 ...$.*....
-.664.598..";
-        let result = check2(test);
-        assert_eq!(result, 467835);
+.664.598.."));
     }
 }

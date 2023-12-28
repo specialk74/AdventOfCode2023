@@ -1,10 +1,10 @@
-fn part1(lines: &str) -> u32
+fn part1(input: &str) -> u32
 {
     0
 }
 
 
-fn part2(lines: &str) -> u32
+fn part2(input: &str) -> u32
 {
     0
 }
@@ -22,13 +22,13 @@ mod tests {
 
     #[test]
     fn test1() {
-        let result = part1("");
-        assert_eq!(result, 0);
+        let input = "";
+        assert_eq!(0, part1(intput));
     }
 
     #[test]
     fn test2() {
-        let result = part2("");
-        assert_eq!(result, 0);
+        let input = "";
+        assert_eq!(0, part2(intput));
     }
 }

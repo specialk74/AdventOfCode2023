@@ -186,7 +186,7 @@ enum States {
     HumidityToLocationData
 }
 
-fn check1(lines: &str) -> u64 {
+fn part1(lines: &str) -> u64 {
     let mut result = Almanac::new();
     let mut state = States::None;
     for line in lines.split('\n').filter(|&x| !x.trim().is_empty()) {
@@ -256,7 +256,7 @@ fn check1(lines: &str) -> u64 {
     result.get_min_location()
 }
 
-fn check2(lines: &str) -> u64 {
+fn part2(lines: &str) -> u64 {
     let mut result = Almanac::new();
     let mut state = States::None;
     for line in lines.split('\n').filter(|&x| !x.trim().is_empty()) {
@@ -338,8 +338,8 @@ fn check2(lines: &str) -> u64 {
 fn main() {
     let input = include_str!("./input.txt");
 
-    println!("Day5 - Part1: {}", check1(&input));
-    println!("Day5 - Part2: {}", check2(&input));
+    println!("Day5 - Part1: {}", part1(&input));
+    println!("Day5 - Part2: {}", part2(&input));
 }
 
 #[cfg(test)]
@@ -364,7 +364,7 @@ mod tests {
     }
     #[test]
     fn test1() {
-        let result = check1("seeds: 79 14 55 13
+        let result = part1("seeds: 79 14 55 13
 
         seed-to-soil map:
         50 98 2
@@ -402,7 +402,7 @@ mod tests {
 
     #[test]
     fn test2() {
-        let result = check2("seeds: 79 14 55 13
+        let result = part2("seeds: 79 14 55 13
 
         seed-to-soil map:
         50 98 2

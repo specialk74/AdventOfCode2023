@@ -1,8 +1,7 @@
-fn part1(lines: &str) -> u32
+fn part1(input: &str) -> u32
 {
-    let results = lines.split('\n');
     let mut sum = 0;
-    for line in results {
+    for line in input.split('\n') {
         let t: String = line.chars().filter(|c| c.is_ascii_digit()).collect();
         if let Some(g) = t.chars().next()
         {
@@ -16,11 +15,31 @@ fn part1(lines: &str) -> u32
     sum
 }
 
+fn part1_iterator(input: &str) -> u32 {
+    input
+        .lines()
+        .map(|line|{
+            let mut it =
+                line.chars().filter_map(|c| {
+                    c.to_digit(10)
+                });
+            let first = it.next().expect("Should be a number");
 
-fn part2(lines: &str) -> u32
+            match it.last() {
+                Some(num) => format!("{first}{num}"),
+                None => format!("{first}{first}")
+            }
+            .parse::<u32>()
+            .expect("Should be a valid number")
+        })
+        .sum::<u32>()
+}
+
+
+fn part2(input: &str) -> u32
 {
     let vec_num = vec!["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-    let results = lines.split('\n');
+    let results = input.split('\n');
     let mut sum = 0;
     //let mut riga = 0;
     for line in results {
