@@ -9,7 +9,7 @@ struct Map {
 
 impl Map {
     fn new (input: &str) -> Self {
-        let values = utils::from_slice_to_vec_u64(input);
+        let values = utils::from_slice_to_vec(input);
         Self {
             destination: values[0],
             source: values[1],
@@ -197,7 +197,7 @@ fn check1(lines: &str) -> u64 {
                                     .split(':')
                                     .nth(1)
                                     .unwrap();
-            result.seeds = utils::from_slice_to_vec_u64(values);
+            result.seeds = utils::from_slice_to_vec(values);
         }
         else if line.contains("seed-to-soil map:")
         {
@@ -267,7 +267,7 @@ fn check2(lines: &str) -> u64 {
                                     .split(':')
                                     .nth(1)
                                     .unwrap();
-            let seeds_orig = utils::from_slice_to_vec_u64(values);
+            let seeds_orig = utils::from_slice_to_vec(values);
             let mut seeds: Vec<Seeds> = Vec::new();
 
             let mut index = 0;
