@@ -22,13 +22,11 @@ mod tests {
 
     #[test]
     fn test1() {
-        let input = "";
-        assert_eq!(0, part1(intput));
+        assert_eq!(0, part1(""));
     }
 
     #[test]
     fn test2() {
-        let input = "";
-        assert_eq!(0, part2(intput));
+        assert_eq!(0, part2(""));
     }
 }
