@@ -22,6 +22,42 @@ fn parse_line(input: &str) -> IResult<&str, (&str, (&str, &str))> {
     separated_pair(alphanumeric0, tag(" = "), parse_sons).parse(input)
 }
 
+fn gcd(mut a: u64, mut b: u64) -> u64 {
+    while b != 0 {
+        let tmp = a;
+        a = b;
+        b = tmp % b;
+    }
+    a
+}
+
+fn lcm(a: u64, b: u64) -> u64 {
+    a * b / gcd(a, b)
+}
+
+fn search_single_path(network: &BTreeMap<&str, (&str, &str)>, navigate: &str, last_fathers_orig: &str) -> u64 {
+    let mut count: u64 = 0;
+    let mut it_cycle = navigate.chars().cycle();
+    let mut last_fathers = last_fathers_orig;
+    loop {
+        count += 1;
+        let c = it_cycle.next().unwrap();
+
+        let (left, right) = network.get(last_fathers).unwrap();
+        if c == 'L' {
+            last_fathers = left;
+        }
+        else {
+            last_fathers = right;
+        }
+
+        if last_fathers.ends_with("Z") {
+            break;
+        }
+    }
+    count
+}
+
 pub fn process(input: &str) -> u64
 {
     let mut iter = input.lines();
@@ -33,59 +69,34 @@ pub fn process(input: &str) -> u64
             (father, (son1, son2))
         })
         .collect();
+/* 
+    let last_fathers: Vec<&&str> = network
+        .keys()
+        .filter(|key| key.ends_with("A"))
+        .collect();
 
-    let mut count: u64 = 0;
-    let mut it_cycle = navigate.chars().cycle();
-
-    let mut last_fathers: Vec<&str> = network.iter().filter_map(|(father, _)| {
-        if father.chars().last().unwrap() == 'A' {
-            Some(*father)
-        }
-        else {
-            None
-        }
+    let cycles: Vec<u64> = last_fathers
+    .iter()
+    .map (|father| {
+        search_single_path(&network, navigate, father)
     })
     .collect();
-    dbg!(&last_fathers);
 
-    loop {
-        count += 1;
-        let c = it_cycle.next().unwrap();
-
-        last_fathers = last_fathers
-                        .iter()
-                        .map(|father| {
-                            let (son_left, son_right) = network.get(father).unwrap();
-                            if c == 'L' {
-                                *son_left
-                            }
-                            else {
-                                *son_right
-                            }
-                        })
-                        .collect();
-
-        let fathers: Vec<&&str> = last_fathers.iter().filter(|last_father| {
-            last_father.chars().last().unwrap() == 'Z'
-        }).collect();
-        
-        if fathers.len() > 2
-        {
-            dbg!(&last_fathers);
-        }
-
-        if last_fathers.par_iter().all(|father| {
-            father.chars().last().unwrap() == 'Z'
-        }) {
-            break;
-        }
-
-        if count % 1_000_000 == 0 {
-            dbg!(count);
-        }
-    }
-
-    count
+    cycles
+        .into_iter()
+        .fold(1, |acc, item| lcm(acc, item))
+*/
+    network
+        .keys()
+        .filter(|key| key.ends_with("A"))
+        .collect::<Vec<&&str>>()
+        .par_iter()
+        .map (|father| {
+            search_single_path(&network, navigate, father)
+        })
+        .collect::<Vec<u64>>()
+        .into_iter()
+        .fold(1, |acc, item| lcm(acc, item))
 }
 
 #[cfg(test)]
